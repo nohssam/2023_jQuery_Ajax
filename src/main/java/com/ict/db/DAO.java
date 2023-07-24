@@ -23,6 +23,27 @@ public class DAO {
 		List<VO> list = getSession().selectList("member.list");
 		return list;
 	}
+	
+	public static List<MVO> membersList(){
+		List<MVO> list = getSession().selectList("members.list");
+		return list;
+	}
+	public static int membersDelete(String m_idx) {
+		int result = getSession().delete("members.delete", m_idx);
+		ss.commit();
+		return result;
+	}
+	
+	public static int getIdChk(String m_id) {
+		int result = getSession().selectOne("members.idchk", m_id);
+		return result;
+	}
+	
+	public static int membersInsert(MVO mvo) {
+		int result = getSession().insert("members.insert", mvo);
+		ss.commit();
+		return result;
+	}
 }
 
 
